@@ -58,11 +58,11 @@
             <form method="POST" action="{{ route('login') }}" id="login-form">
               @csrf
               <div class="form-group-material">
-                <input id="login-username" type="text" name="name" required class="input-material" value="">
+                <input id="email" type="email" name="email" value="{{ old('email') }}"  required class="input-material" value="">
                 <label for="login-username" class="label-material">{{trans('file.UserName')}}</label>
-                @if ($errors->has('name'))
+                @if ($errors->has('email'))
                     <p>
-                        <strong>{{ $errors->first('name') }}</strong>
+                        <strong>{{ $errors->first('email') }}</strong>
                     </p>
                 @endif
               </div>
