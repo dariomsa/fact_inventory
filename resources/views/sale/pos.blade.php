@@ -898,18 +898,20 @@
                         <h2>{{trans('file.grand total')}} <span id="grand-total">0.00</span></h2>
                     </div>
                     <div class="payment-options">
-                        <div class="column-5">
-                            <button style="background: #0984e3" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="credit-card-btn"><i class="fa fa-credit-card"></i> Card</button>   
+                    <div class="column-5">
+                            <button style="background-color: #e28d02" type="button" class="btn btn-custom" id="draft-btn"><i class="dripicons-flag"></i> Borrador</button>
                         </div>
                         <div class="column-5">
-                            <button style="background: #00cec9" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="cash-btn"><i class="fa fa-money"></i> Cash</button>
+                            <button style="background: #00cec9" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="cash-btn"><i class="fa fa-money"></i> Efectivo</button>
                         </div>
                         <div class="column-5">
+                            <button style="background: #0984e3" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="credit-card-btn"><i class="fa fa-credit-card"></i> Tarjeta</button>   
+                        </div>
+                      
+                        <!-- <div class="column-5">
                             <button style="background-color: #213170" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="paypal-btn"><i class="fa fa-paypal"></i> Paypal</button>
-                        </div>
-                        <div class="column-5">
-                            <button style="background-color: #e28d02" type="button" class="btn btn-custom" id="draft-btn"><i class="dripicons-flag"></i> Draft</button>
-                        </div>
+                        </div> -->
+                       
                         <div class="column-5">
                             <button style="background-color: #fd7272" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="cheque-btn"><i class="fa fa-money"></i> Cheque</button>
                         </div>
@@ -917,7 +919,7 @@
                             <button style="background-color: #5f27cd" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="gift-card-btn"><i class="fa fa-credit-card-alt"></i> GiftCard</button>
                         </div>
                         <div class="column-5">
-                            <button style="background-color: #b33771" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="deposit-btn"><i class="fa fa-university"></i> Deposit</button>
+                            <button style="background-color: #b33771" type="button" class="btn btn-custom payment-btn" data-toggle="modal" data-target="#add-payment" id="deposit-btn"><i class="fa fa-university"></i> Depósito</button>
                         </div>
                         <div class="column-5">
                             <button style="background-color: #d63031;" type="button" class="btn btn-custom" id="cancel-btn" onclick="return confirmCancel()"><i class="fa fa-close"></i> Cancel</button>
@@ -1998,6 +2000,7 @@ $(".payment-btn").on("click", function() {
 });
 
 $("#draft-btn").on("click",function(){
+    console.log('draftffff');
     var audio = $("#mysoundclip2")[0];
     audio.play();
     $('input[name="sale_status"]').val(3);
@@ -2005,7 +2008,7 @@ $("#draft-btn").on("click",function(){
     $('input[name="paid_amount"]').prop('required',false);
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        Swal.fire('Debe ingresar productos');
     }
     else
         $('.payment-form').submit();
@@ -2268,7 +2271,7 @@ function edit(){
 function couponDiscount() {
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        console.log("Please insert product to order table!")
     }
     else if($("#coupon-code").val() != ''){
         valid = 0;
@@ -2572,24 +2575,44 @@ function cancel(rownumber) {
 function confirmCancel() {
     var audio = $("#mysoundclip2")[0];
     audio.play();
-    if (confirm("Are you sure want to cancel?")) {
-        cancel($('table.order-list tbody tr:last').index());
-    }
-    return false;
+    Swal.fire({
+  title: 'Esta Seguro cancelar?',
+  showCancelButton: true,
+  confirmButtonText: 'Yes',
+  customClass: {
+    actions: 'my-actions',
+    cancelButton: 'order-1 right-gap',
+    confirmButton: 'order-2',
+  }
+}).then((result) => {
+  if (result.isConfirmed) {
+    cancel($('table.order-list tbody tr:last').index());
+   } 
+})
+
+
 }
 
 $(document).on('submit', '.payment-form', function(e) {
     var rownumber = $('table.order-list tbody tr:last').index();
     if (rownumber < 0) {
-        alert("Please insert product to order table!")
+        Swal.fire('Debe ingresar productos');
         e.preventDefault();
     }
-    else if( parseFloat( $('input[name="paying_amount"]').val() ) < parseFloat( $('input[name="paid_amount"]').val() ) ){
-        alert('Paying amount cannot be bigger than recieved amount');
+    else if( parseFloat( $('input[name="paying_amount"]').val() ) < parseFloat( $('input[name="paid_amount"]').val() ) )
+    {
+        Swal.fire('Existen diferencias de valor');
         e.preventDefault();
     }
-    $('input[name="paid_by_id"]').val($('select[name="paid_by_id_select"]').val());
-    $('input[name="order_tax_rate"]').val($('select[name="order_tax_rate_select"]').val());
+
+    if(confirm('Está seguro finalizar la venta')) {
+        $('input[name="paid_by_id"]').val($('select[name="paid_by_id_select"]').val());
+        $('input[name="order_tax_rate"]').val($('select[name="order_tax_rate_select"]').val());
+        return true;
+    }
+    
+
+
 
 });
 

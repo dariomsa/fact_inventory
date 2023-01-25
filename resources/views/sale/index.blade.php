@@ -56,10 +56,10 @@
                     <div class="col-md-3">
                         <button id="print-btn" type="button" class="btn btn-default btn-sm d-print-none"><i class="dripicons-print"></i> {{trans('file.Print')}}</button>
                         
-                        {{ Form::open(['route' => 'sale.sendmail', 'method' => 'post', 'class' => 'sendmail-form'] ) }}
+                        <!-- {{ Form::open(['route' => 'sale.sendmail', 'method' => 'post', 'class' => 'sendmail-form'] ) }}
                             <input type="hidden" name="sale_id">
                             <button class="btn btn-default btn-sm d-print-none"><i class="dripicons-mail"></i> {{trans('file.Email')}}</button>
-                        {{ Form::close() }}
+                        {{ Form::close() }} -->
                     </div>
                     <div class="col-md-6">
                         <h3 id="exampleModalLabel" class="modal-title text-center container-fluid">{{$general_setting->site_title}}</h3>
@@ -109,7 +109,7 @@
                             <th>{{trans('file.Account')}}</th>
                             <th>{{trans('file.Amount')}}</th>
                             <th>{{trans('file.Paid By')}}</th>
-                            <th>{{trans('file.action')}}</th>
+                            <!-- <th>{{trans('file.action')}}</th> -->
                         </tr>
                     </thead>
                     <tbody>

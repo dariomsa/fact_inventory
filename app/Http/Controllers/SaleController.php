@@ -59,7 +59,18 @@ class SaleController extends Controller
                 $lims_sale_all = Sale::orderBy('id', 'desc')->where('user_id', Auth::id())->get();
             else
                 $lims_sale_all = Sale::orderBy('id', 'desc')->get();
-
+                
+            ///dm validacion ventas
+            // foreach ($lims_sale_all as $clave => $valor) {
+            //         if($valor->sale_status==3) // comprueba estado venta
+            //         {                        
+            //         if (($key = array_search("sales-edit", $all_permission)) !== false) {
+            //          //unset($all_permission[$key]);
+            //         }
+            //         }
+            //         }
+            ///dm validacion ventas    
+            
             $lims_gift_card_list = GiftCard::where("is_active", true)->get();
             $lims_pos_setting_data = PosSetting::latest()->first();
             $lims_account_list = Account::where('is_active', true)->get();
@@ -211,14 +222,32 @@ class SaleController extends Controller
                                 </li>';
                 if(in_array("sales-edit", $request['all_permission'])){
                     if($sale->sale_status != 3)
-                        $nestedData['options'] .= '<li>
-                            <a href="'.route('sales.edit', ['id' => $sale->id]).'" class="btn btn-link"><i class="dripicons-document-edit"></i> '.trans('file.edit').'</a>
-                            </li>';
+                        // $nestedData['options'] .= '<li>
+                        //     <a href="'.route('sales.edit', ['id' => $sale->id]).'" class="btn btn-link"><i class="dripicons-document-edit"></i> '.trans('file.edit').'</a>
+                        //     </li>';
+                            $nestedData['options'] .= ''; 
+                            
                     else
                         $nestedData['options'] .= '<li>
                             <a href="'.url('sales/'.$sale->id.'/create').'" class="btn btn-link"><i class="dripicons-document-edit"></i> '.trans('file.edit').'</a>
                         </li>';
                 }
+
+                ///DM
+                if($sale->sale_status != 3)
+                {
+                    $nestedData['options'] .= '
+                   
+                    <li>
+                        <button type="button" class="get-payment btn btn-link" data-id = "'.$sale->id.'"><i class="fa fa-money"></i> '.trans('file.View Payment').'</button>
+                    </li>
+                    <li>
+                        <button type="button" class="add-delivery btn btn-link" data-id = "'.$sale->id.'"><i class="fa fa-truck"></i> '.trans('file.Add Delivery').'</button>
+                    </li>
+                    ';    
+                }
+                ///
+                else{
                 $nestedData['options'] .= 
                     '<li>
                         <button type="button" class="add-payment btn btn-link" data-id = "'.$sale->id.'" data-toggle="modal" data-target="#add-payment"><i class="fa fa-plus"></i> '.trans('file.Add Payment').'</button>
@@ -229,6 +258,9 @@ class SaleController extends Controller
                     <li>
                         <button type="button" class="add-delivery btn btn-link" data-id = "'.$sale->id.'"><i class="fa fa-truck"></i> '.trans('file.Add Delivery').'</button>
                     </li>';
+                }
+
+
                 if(in_array("sales-delete", $request['all_permission']))
                     $nestedData['options'] .= \Form::open(["route" => ["sales.destroy", $sale->id], "method" => "DELETE"] ).'
                             <li>
@@ -579,7 +611,8 @@ class SaleController extends Controller
             }
         }
         if($lims_sale_data->sale_status == '1')
-            return redirect('sales/gen_invoice/' . $lims_sale_data->id)->with('message', $message);
+            //return redirect('sales/gen_invoice/' . $lims_sale_data->id)->with('message', $message);
+            return redirect('pos')->with('message', 'Orden Creada Satisfactoriamente');
         elseif($data['pos'])
             return redirect('pos')->with('message', $message);
         else
