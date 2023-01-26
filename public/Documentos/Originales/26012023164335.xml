@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <factura id="comprobante" version="1.1.0">
   <infoTributaria>
-    <razonSocial>MDAZA CARRILLO CINDY LORENA</razonSocial>
-    <nombreComercial>DAZA CARRILLO CINDY LORENA</nombreComercial>
-    <ruc>1757703580001</ruc>
+    <razonSocial>JORGE ARTURO CACERES ONTANEDA</razonSocial>
+    <nombreComercial>JORGE ARTURO CACERES ONTANEDA</nombreComercial>
+    <ruc>1701046243001</ruc>
     <codDoc>01</codDoc>
     <estab>001</estab>
     <ptoEmi>001</ptoEmi>
-    <secuencial>653925826</secuencial>
+    <secuencial>804321974</secuencial>
     <dirMatriz>EL TABLON</dirMatriz>
   </infoTributaria>
   <infoFactura>
     <fechaEmision>26/01/2023</fechaEmision>
-    <dirEstablecimiento>11</dirEstablecimiento>
+    <dirEstablecimiento>TABLON Y MALDONADOQUITO</dirEstablecimiento>
     <obligadoContabilidad>SI</obligadoContabilidad>
     <tipoIdentificacionComprador>05</tipoIdentificacionComprador>
-    <razonSocialComprador>CONSUMIDOR FINAL</razonSocialComprador>
+    <razonSocialComprador>Dario Munoz</razonSocialComprador>
     <identificacionComprador>1716656952</identificacionComprador>
-    <totalSinImpuestos>250</totalSinImpuestos>
+    <totalSinImpuestos>100</totalSinImpuestos>
     <totalDescuento>0.00</totalDescuento>
     <totalConImpuestos>
       <totalImpuesto>
         <codigo>2</codigo>
         <codigoPorcentaje>2</codigoPorcentaje>
-        <baseImponible>250</baseImponible>
+        <baseImponible>100</baseImponible>
         <tarifa>12.00</tarifa>
-        <valor>30</valor>
+        <valor>12</valor>
       </totalImpuesto>
     </totalConImpuestos>
     <propina>0</propina>
-    <importeTotal>280</importeTotal>
+    <importeTotal>112</importeTotal>
     <moneda>USD</moneda>
     <pagos>
       <pago>
         <formaPago>01</formaPago>
-        <total>150</total>
+        <total>100</total>
         <plazo>0</plazo>
         <unidadTiempo>dias</unidadTiempo>
       </pago>
@@ -59,27 +59,6 @@
           <tarifa>12</tarifa>
           <baseImponible>100</baseImponible>
           <valor>100</valor>
-        </impuesto>
-      </impuestos>
-    </detalle>
-    <detalle>
-      <codigoPrincipal>PUBLI</codigoPrincipal>
-      <codigoAuxiliar>PUBLI</codigoAuxiliar>
-      <descripcion>PURE</descripcion>
-      <cantidad>1</cantidad>
-      <precioUnitario>150</precioUnitario>
-      <descuento>0</descuento>
-      <precioTotalSinImpuesto>150</precioTotalSinImpuesto>
-      <detallesAdicionales>
-        <detAdicional nombre="detalle1" valor="fact"/>
-      </detallesAdicionales>
-      <impuestos>
-        <impuesto>
-          <codigo>2</codigo>
-          <codigoPorcentaje>2</codigoPorcentaje>
-          <tarifa>12</tarifa>
-          <baseImponible>150</baseImponible>
-          <valor>150</valor>
         </impuesto>
       </impuestos>
     </detalle>

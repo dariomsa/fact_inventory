@@ -217,11 +217,18 @@ class nusoap_base {
 	var $xmlEntities = array('quot' => '"','amp' => '&',
 		'lt' => '<','gt' => '>','apos' => "'");
 
+        
+
 	/**
 	* constructor
 	*
 	* @access	public
 	*/
+    public function __construct()
+    {
+        echo "Bar constructor\n";
+    }
+
 	function nusoap_base() {
 		$this->debugLevel = $GLOBALS['_transient']['static']['nusoap_base']['globalDebugLevel'];
 	}
@@ -1030,6 +1037,11 @@ class nusoap_fault extends nusoap_base {
 	 */
 	var $faultdetail;
 
+    public function __construct()
+    {
+        echo "Bar constructor\n";
+    }
+
 	/**
 	* constructor
     *
@@ -1092,6 +1104,7 @@ class soap_fault extends nusoap_fault {
 * @version  $Id: nusoap.php,v 1.123 2010/04/26 20:15:08 snichol Exp $
 * @access   public
 */
+
 class nusoap_xmlschema extends nusoap_base  {
 	
 	// files
@@ -1123,6 +1136,11 @@ class nusoap_xmlschema extends nusoap_base  {
 	var $message = array();
 	var $defaultNamespace = array();
     
+    public function __construct()
+    {
+        echo "Bar constructor\n";
+    }
+
 	/**
 	* constructor
 	*
@@ -2108,6 +2126,11 @@ class soapval extends nusoap_base {
 	 */
 	var $attributes;
 
+    public function __construct()
+    {
+        echo "Bar constructor\n";
+    }
+
 	/**
 	* constructor
 	*
@@ -2203,9 +2226,16 @@ class soap_transport_http extends nusoap_base {
 								// verifypeer: default is 1
 								// verifyhost: default is 1
 
+                                public function __construct()
+                                {
+                                    echo "Bar constructor\n";
+                                }
+
 	/**
 	* constructor
 	*
+
+    
 	* @param string $url The URL to which to connect
 	* @param array $curl_options User-specified cURL options
 	* @param boolean $use_curl Whether to try to force cURL use
@@ -3630,6 +3660,10 @@ class nusoap_server extends nusoap_base {
 	 */
 	var $debug_flag = false;
 
+    public function __construct()
+    {
+        echo "Bar constructor\n";
+    }
 
 	/**
 	* constructor
@@ -4646,6 +4680,11 @@ class wsdl extends nusoap_base {
 	var $password = '';				// Password for HTTP authentication
 	var $authtype = '';				// Type of HTTP authentication
 	var $certRequest = array();		// Certificate for HTTP SSL authentication
+
+    public function __construct()
+    {
+        echo "Bar constructor\n";
+    }
 
     /**
      * constructor
@@ -6575,6 +6614,11 @@ class nusoap_parser extends nusoap_base {
 	// toggle for auto-decoding element content
 	var $decode_utf8 = true;
 
+    public function __construct()
+    {
+        echo "Bar constructor\n";
+    }
+
 	/**
 	* constructor that actually does the parsing
 	*
@@ -7247,6 +7291,11 @@ class nusoap_client extends nusoap_base  {
 	 * @access   public
 	 */
 	var $faultdetail;
+
+    public function __construct()
+    {
+        echo "Bar constructor\n";
+    }
 
 	/**
 	* constructor

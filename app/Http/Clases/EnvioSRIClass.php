@@ -75,7 +75,6 @@ class EnvioSRIClass {
       
                     $mail='Motivo: ' . $mensaje . '<br/>'.  utf8_decode($infoAdicional);
                     
-                    echo $mail;
                
 
 
@@ -98,7 +97,7 @@ class EnvioSRIClass {
 
 
 
-                echo "El path " . $path . "\n\n";
+             
 
             }
         }

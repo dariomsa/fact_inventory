@@ -32,12 +32,13 @@ class ConexionSRIClassDM {
 							  
         $client = new \SoapClient('https://celcer.sri.gob.ec/comprobantes-electronicos-ws/RecepcionComprobantesOffline?wsdl');
           $result = $client->validarComprobante($parametros);
-		dd($result);
- 
+		   \Log::info(['TIPO' => "RESPUESTA SRI", 'RESPUESTA' => $result]); 
+	 
             }
         catch(SoapFault $e)
         {
          echo $e->getMessage();
+		 \Log::info(['TIPO' => "RESPUESTA SRI", 'RESPUESTA' => $e->getMessage()]); 
         }
         	
 		
@@ -82,7 +83,7 @@ class ConexionSRIClassDM {
 		/*\Log::useDailyFiles(storage_path().'/logs/SRIAuto.log');
 		\Log::error(['Respuesta'=>$response]);*/
 
-        return $response;
+       
 
         
     }

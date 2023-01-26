@@ -142,9 +142,9 @@ $infoFactura = $dom->createElement('infoFactura');
 ////informacion triburaria
 
 
-$razonSocial = $dom->createElement('razonSocial','MDAZA CARRILLO CINDY LORENA');
-$nombreComercial = $dom->createElement('nombreComercial','DAZA CARRILLO CINDY LORENA');
-$ruc = $dom->createElement('ruc','1757703580001');
+$razonSocial = $dom->createElement('razonSocial','JORGE ARTURO CACERES ONTANEDA');
+$nombreComercial = $dom->createElement('nombreComercial','JORGE ARTURO CACERES ONTANEDA');
+$ruc = $dom->createElement('ruc','1701046243001');
 $codDoc = $dom->createElement('codDoc','01' );
 $estab = $dom->createElement('estab','001');
 $ptoEmi = $dom->createElement('ptoEmi','001');
